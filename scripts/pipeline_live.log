@@ -1,0 +1,523 @@
+
+[1m[0;36m  ╔══════════════════════════════════════════════════════╗
+  ║   DNS Traffic Anomaly Detection — Pipeline Runner   ║
+  ╚══════════════════════════════════════════════════════╝
+[0m
+[0;36m  ℹ  Script dir : /home/paifern/DNS-_raffic-_Anomaly_Detection/scripts[0m
+[0;36m  ℹ  Data dir   : /home/paifern/DNS-_raffic-_Anomaly_Detection/data[0m
+[0;36m  ℹ  Model mem  : /home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory[0m
+[0;36m  ℹ  Log file   : /home/paifern/DNS-_raffic-_Anomaly_Detection/logs/pipeline_20260319_124430.log[0m
+
+[1m[0;36m══ Checking trained model memory [0m
+[0;32m  ✅ Path A models ready (trained: 2026-03-18T07:18:30Z)[0m
+[0;32m  ✅ Path B model ready (trained: 2026-03-18T07:18:30Z)[0m
+[0;36m  ℹ  Path A models loaded from memory[0m
+[0;36m  ℹ  Path B model loaded from memory[0m
+
+  📋 Model memory info:
+     Last trained   : 2026-03-18T07:18:30Z
+     Trained on     : 8152 samples (2264 attacks + 5888 benign)
+
+[1m[0;36m══ Preflight checks [0m
+[0;32m  ✅ python3: Python 3.13.12[0m
+[0;32m  ✅ All script files present[0m
+[0;32m  ✅ Found 2 DNS log file(s)[0m
+[1;33m  ⚠  Installing: scikit-learn tensorflow[0m
+[0;32m  ✅ Python packages ready[0m
+
+[1m[0;36m══ STEP 1 — Week 3: Feature Extraction (new traffic) [0m
+[0;36m  ℹ  Parsing new DNS logs from: /home/paifern/DNS-_raffic-_Anomaly_Detection/technitium-dns/data/dns_logs[0m
+================================================================================
+DNS FEATURE EXTRACTION FROM TECHNITIUM LOGS - WEEK 3
+Enhanced for Attack Tool Detection
+================================================================================
+
+📁 Log directory: /home/paifern/DNS-_raffic-_Anomaly_Detection/technitium-dns/data/dns_logs
+📁 Output directory: /home/paifern/DNS-_raffic-_Anomaly_Detection/data
+
+Found 2 log files to process
+Processing log file: /home/paifern/DNS-_raffic-_Anomaly_Detection/technitium-dns/data/dns_logs/2026-03-18.log
+  Completed: 8190 lines processed, 8152 DNS queries extracted
+Processing log file: /home/paifern/DNS-_raffic-_Anomaly_Detection/technitium-dns/data/dns_logs/2026-03-19.log
+  Completed: 12 lines processed, 0 DNS queries extracted
+
+================================================================================
+DNS FEATURE EXTRACTION SUMMARY - WEEK 3 (ATTACK DETECTION FOCUS)
+================================================================================
+Total queries processed: 8152
+
+🔴 ATTACK DETECTION SUMMARY:
+   Suspicious queries: 2264 (27.8%)
+
+   Attack Type Breakdown:
+     • ENCODING: 1988
+     • NXDOMAIN_FLOOD: 351
+     • HIGH_ENTROPY: 38
+     • RANDOM_SUBDOMAIN: 2
+
+📅 Date range: 2026-03-18 to 2026-03-18
+   Unique domains: 8148
+   Unique client IPs: 1
+
+🎯 ATTACK TOOL PATTERNS DETECTED:
+   NXDOMAIN flood patterns: 351
+   Random subdomain patterns: 2
+   Amplification attempts: 0
+   Cache poisoning attempts: 0
+   High entropy domains: 38
+   Encoding patterns: 3201
+
+📊 FEATURE STATISTICS (for baseline establishment):
+------------------------------------------------------------
+
+entropy:
+  Mean: 3.4205
+  Std: 0.3263
+  Min: 2.4116
+  Max: 4.2221
+
+subdomain_depth:
+  Mean: 2.4993
+  Std: 0.5010
+  Min: 1.0000
+  Max: 3.0000
+
+query_length:
+  Mean: 23.0550
+  Std: 8.1227
+  Min: 9.0000
+  Max: 80.0000
+
+numeric_ratio:
+  Mean: 0.0194
+  Std: 0.0435
+  Min: 0.0000
+  Max: 0.4500
+
+first_label_entropy:
+  Mean: 2.5043
+  Std: 0.6946
+  Min: 0.0000
+  Max: 3.9620
+
+first_label_length:
+  Mean: 8.3706
+  Std: 4.8946
+  Min: 1.0000
+  Max: 44.0000
+
+⚠  TOP 10 MOST SUSPICIOUS DOMAINS:
+  1. 4fdaayvm7rrh2cz8-cdn.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.12 | Length: 30
+  2. hul-performance-highlights.linode.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.09 | Length: 43
+  3. financial-services-onboarding-apigw.financial-services-payments-apigw.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.09 | Length: 79
+  4. capositivecovidtestreporting-staging.cp01.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.07 | Length: 51
+  5. searchrecommendations-service-staging.secure-canalplay-chromecast.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.07 | Length: 75
+  6. streaming5-shared-ln.streaming5-shared-ny.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.06 | Length: 51
+  7. streaming5-shared-eu.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.06 | Length: 30
+  8. watchesofswitzerland-uat.wifi-uat.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.04 | Length: 43
+  9. webreconditioning-service-qa-staging.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY,ENCODING | Entropy: 4.02 | Length: 46
+  10. tj-pod3-smp-device-asset.workplacebenefits.lab.local
+     Attacks: NXDOMAIN_FLOOD,HIGH_ENTROPY | Entropy: 4.21 | Length: 52
+
+✅ Features exported to JSON: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_all.json
+   Total records: 8152
+
+✅ Attack summary exported to: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_attack_summary.json
+
+✅ Features exported to JSON: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_suspicious_domains.json
+   Total records: 2264
+
+⚠  Found 2264 suspicious domains for Week 4 testing
+
+✅ Project summary saved to: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_project_summary.json
+
+📂 Files in output directory:
+  • week3_attack_summary.json (698 bytes)
+  • week3_features_all.json (8,436,452 bytes)
+  • week3_features_with_ml.json (12,543,777 bytes)
+  • week3_project_summary.json (312 bytes)
+  • week3_suspicious_domains.json (2,377,729 bytes)
+[0;32m  ✅ Week 3 complete — 8152 records extracted[0m
+
+[1m[0;36m══ STEP 2 — ML Bridge: Applying trained model memory to new traffic [0m
+[0;36m  ℹ  Using models trained on: 2026-03-18T07:18:30Z[0m
+[0;36m  ℹ  Path B: active (Trafficformer reconstruction anomaly detection)[0m
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1773938705.523554   29553 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1773938705.922488   29553 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1773938707.843593   29553 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+ERROR: Loading module scapy.layers.dcerpc
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/dcerpc.py", line 98, in <module>
+    from scapy.layers.kerberos import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.kerberos
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.msrpce.rpcclient
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/msrpce/rpcclient.py", line 16, in <module>
+    from scapy.layers.dcerpc import (
+    ...<28 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/dcerpc.py", line 98, in <module>
+    from scapy.layers.kerberos import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.msrpce.rpcserver
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/msrpce/rpcserver.py", line 19, in <module>
+    from scapy.layers.dcerpc import (
+    ...<18 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/dcerpc.py", line 98, in <module>
+    from scapy.layers.kerberos import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.smbclient
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/smbclient.py", line 34, in <module>
+    from scapy.layers.dcerpc import NDRUnion, find_dcerpc_interface
+  File "/usr/lib/python3/dist-packages/scapy/layers/dcerpc.py", line 98, in <module>
+    from scapy.layers.kerberos import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.smbserver
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/smbserver.py", line 33, in <module>
+    from scapy.layers.dcerpc import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/dcerpc.py", line 98, in <module>
+    from scapy.layers.kerberos import (
+    ...<2 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+ERROR: Loading module scapy.layers.spnego
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/scapy/main.py", line 312, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/usr/lib/python3/dist-packages/scapy/layers/spnego.py", line 84, in <module>
+    from scapy.layers.kerberos import (
+    ...<4 lines>...
+    )
+  File "/usr/lib/python3/dist-packages/scapy/layers/kerberos.py", line 163, in <module>
+    from scapy.layers.tls.crypto.groups import _ffdh_groups
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 49, in <module>
+    class modp768(_FFDHParams):
+    ...<6 lines>...
+        mLen = 768
+  File "/usr/lib/python3/dist-packages/scapy/layers/tls/crypto/groups.py", line 40, in __new__
+    params = pn.parameters(default_backend())
+ValueError: Invalid DH parameters
+E0000 00:00:1773938713.279450   29553 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+
+======================================================================
+ML BRIDGE — Connecting Week 3 → ML Models → Week 4
+======================================================================
+Input  : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_all.json
+Output : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_with_ml.json
+
+[*] Loaded 8152 Week 3 records
+
+── Path A: RF + Transformer (8-feature ensemble) ─────────────
+   Using ensemble threshold: 0.3578
+[*] Reading Week 3 features JSON: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_all.json
+[*] Loaded 8152 Week 3 feature records.
+   Path A results: 2276 attack  |  5876 benign
+
+── Path B: Trafficformer (sequence reconstruction) ───────────
+
+⚠ Path B skipped: Model not found: model/dns_trafficformer.keras
+
+── Merging ML scores ──────────────────────────────────────────
+
+── Bridge Summary ─────────────────────────────────────────────
+   Total records      : 8152
+   ML attacks flagged : 2276 (27.9%)
+   HIGH confidence    : 0
+   MEDIUM confidence  : 12
+   LOW confidence     : 2020
+   CLEAN              : 6120
+
+   New columns added to Week 3 features:
+     + ml_score_A
+     + ml_label_A
+     + ml_verdict_A
+     + ml_score_B
+     + ml_label_B
+     + ml_combined_score
+     + ml_combined_label
+     + ml_combined_verdict
+     + ml_confidence
+     + ml_threat_score
+
+✅ Bridge output saved → /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_with_ml.json
+   Next step: python Week4_detection_engine.py --input /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_with_ml.json
+[0;32m  ✅ ML bridge complete — new traffic scored against trained models[0m
+
+[1m[0;36m══ STEP 3 — Week 4: Detection Engine [0m
+[0;36m  ℹ  Running 6 detection rules (4 Sentinel + Z-score + 2 ML rules)[0m
+
+================================================================================
+WEEK 4 (UPDATED) — UNIFIED DNS DETECTION ENGINE
+================================================================================
+Rule: Excessive NXDOMAIN DNS Queries  [Microsoft Sentinel ASIM DNS Solution]
+Rule: Multiple Errors for Same DNS Query  [Microsoft Sentinel ASIM DNS Solution]
+Rule: DNS Tunneling Detection  [Project Requirement]
+Rule: Deep Subdomain Detection  [Project Requirement]
+
+ML Rules (active if ml_bridge.py output is used):
+  Rule 5: ML Model Attack Detection
+  Rule 6: ML High Threat Score  (threshold: 0.7)
+
+Z-score threshold: 2.0 σ  [NetSleuthXplorer]
+Microsoft Defender TI: Disabled
+================================================================================
+
+📂 Loading features from: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_with_ml.json
+✅ ML scores detected — ML rules (5 & 6) will be active
+✅ Loaded 8152 DNS queries
+   Date range: 2026-03-18 13:44:46 to 2026-03-18 13:47:49
+
+📊 Building statistical baseline for Z-score detection...
+✅ Built baseline for 1 unique IPs
+
+================================================================================
+DETECTION ENGINE EXECUTION
+================================================================================
+
+🔍 [Rule 1] Running: Excessive NXDOMAIN DNS Queries
+   📊 Found 8148 NXDOMAIN responses
+   🚨 Alerts generated: 1
+
+🔍 [Rule 2] Running: Multiple Errors for Same DNS Query
+   📊 Found 8148 error responses
+   🚨 Alerts generated: 0
+
+🔍 [Rule 3] Running: DNS Tunneling Detection
+   📊 Found 160 potential tunneling queries
+   🚨 Alerts generated: 100
+
+🔍 [Rule 4] Running: Deep Subdomain Detection
+   📊 Found 0 queries with deep subdomains
+
+🔍 [Z-score] Running: Statistical Anomaly Detection
+   🚨 Statistical alerts: 574
+
+🔍 [Rule 5] Running: ML Model Attack Detection
+   📊 Found 2276 ML-flagged queries
+   🚨 Alerts generated: 200
+
+🔍 [Rule 6] Running: ML High Threat Score
+   📊 Found 0 queries with threat score >= 0.7
+
+🔍 Enriching 1 IPs with Microsoft Defender TI...
+Enriching IPs:   0%|          | 0/1 [00:00<?, ?IP/s]Enriching IPs: 100%|██████████| 1/1 [00:00<00:00, 23831.27IP/s]
+⚠ MDTI credentials not configured. Skipping API calls.
+⚠ MDTI credentials not configured. Skipping API calls.
+
+================================================================================
+DETECTION SUMMARY
+================================================================================
+Total queries analyzed : 8152
+Total alerts generated : 875
+ML Rules (5 & 6)       : ✅ Active
+
+Alerts by Rule:
+  - Excessive NXDOMAIN DNS Queries: 1
+  - DNS Tunneling Detection: 100
+  - ML Model Attack Detection: 200
+
+Alerts by Severity:
+  - High: 101
+  - Medium: 200
+
+Top Offending IPs:
+  - 192.168.197.135: 301
+
+Top Suspicious Domains:
+  - lab.local: 4
+  - N/A: 1
+  - designsystem.miram-uat01.lab.local: 1
+  - edit-preview.southcentralus.lab.local: 1
+  - blitz-stage.wgdompxy.lab.local: 1
+================================================================================
+
+✅ Alerts exported to: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week4_unified_alerts.json
+✅ Alerts CSV exported to: /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week4_unified_alerts.csv
+
+✅ Detection complete.
+   Rule 1–4: Microsoft Sentinel rules
+   Z-score:  NetSleuthXplorer statistical detection
+   Rule 5–6: ML detection (Path A: RF+Transformer, Path B: Trafficformer)
+[0;32m  ✅ Week 4 complete — 875 total alerts (202 High, 673 Medium)[0m
+
+[1m[0;32m══════════════════════════════════════════════════════[0m
+[1m[0;32m  ✅  DETECTION COMPLETE  (0m 48s)[0m
+[1m[0;32m══════════════════════════════════════════════════════[0m
+
+[1mResults:[0m
+  🚨 Total alerts      : 875
+  🔴 High severity     : 202
+  🟡 Medium severity   : 673
+
+[1mOutput files:[0m
+  📄 Week 3 features    : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_all.json
+  🤖 ML-enriched data   : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week3_features_with_ml.json
+  🚨 Alerts (JSON)      : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week4_unified_alerts.json
+  📊 Alerts (CSV)       : /home/paifern/DNS-_raffic-_Anomaly_Detection/data/week4_unified_alerts.csv
+  📋 Pipeline log      : /home/paifern/DNS-_raffic-_Anomaly_Detection/logs/pipeline_20260319_124430.log
+
+  Detection breakdown by rule:
+    🤖 ML Model Attack Detection: 200
+    🔍 DNS Tunneling Detection: 100
+    🔍 Excessive NXDOMAIN DNS Queries: 1
+
+[1mModel memory used:[0m
+  Stored in: [0;36m/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory[0m
+  Trained on : 2026-03-18T07:18:30Z
+  Samples    : 8152 (2264 attack + 5888 benign)
+
+[0;36m  To retrain on new data:[0m
+  [1m./Train_Models.sh --retrain[0m
+

@@ -1,0 +1,7 @@
+{
+  "threshold": 2.674929351087485e-05,
+  "multiplier": 2.5,
+  "window_size": 20,
+  "error_mean": 9.870671419776045e-06,
+  "error_std": 6.751448836439522e-06
+}
