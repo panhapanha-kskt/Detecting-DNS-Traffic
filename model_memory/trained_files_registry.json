@@ -1,0 +1,18 @@
+{
+  "trained_files": [
+    {
+      "path": "/home/paifern/DNS-_raffic-_Anomaly_Detection/technitium-dns/data/dns_logs/2026-03-18.log",
+      "checksum": "6e38d8fde7a1394a1031476d3ceb44330400fdef57415e4d1aa9607bdc080190",
+      "type": "log",
+      "records": "8152",
+      "trained_at": "2026-03-18T07:12:32Z"
+    },
+    {
+      "path": "/home/paifern/DNS-_raffic-_Anomaly_Detection/data/extracted_2026-03-18_1773817951.json",
+      "checksum": "471eab2d1e23ffdf",
+      "type": "json",
+      "records": 8152,
+      "trained_at": "2026-03-18T07:12:32Z"
+    }
+  ]
+}

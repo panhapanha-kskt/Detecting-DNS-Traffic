@@ -1,0 +1,128 @@
+{
+  "last_trained": "2026-03-18T07:18:30Z",
+  "training_data": "/home/paifern/DNS-_raffic-_Anomaly_Detection/data/merged_features_all.json",
+  "total_samples": "8152",
+  "attack_samples": "2264",
+  "benign_samples": "5888",
+  "attack_types_seen": [
+    "unknown"
+  ],
+  "path_b_model_name": "dns_trafficformer",
+  "path_b_window_size": 20,
+  "rf_weight": 0.6,
+  "tf_weight": 0.4,
+  "retrain_mode": "initial",
+  "new_files_this_run": 1,
+  "skipped_files_this_run": 0,
+  "source_summary": {
+    "total_source_files": 1,
+    "csv_files": 1,
+    "json_files": 1,
+    "pcap_converted": 0,
+    "log_converted": 1
+  },
+  "feature_snapshot": {
+    "entropy": {
+      "mean": 3.4205,
+      "stdev": 0.3263,
+      "min": 2.4116,
+      "max": 4.2221
+    },
+    "subdomain_depth": {
+      "mean": 2.4993,
+      "stdev": 0.501,
+      "min": 1,
+      "max": 3
+    },
+    "query_length": {
+      "mean": 23.055,
+      "stdev": 8.1232,
+      "min": 9,
+      "max": 80
+    },
+    "numeric_ratio": {
+      "mean": 0.0194,
+      "stdev": 0.0435,
+      "min": 0.0,
+      "max": 0.45
+    },
+    "consecutive_pattern_score": {
+      "mean": 0.0712,
+      "stdev": 0.0336,
+      "min": 0.0132,
+      "max": 0.3333
+    },
+    "num_labels": {
+      "mean": 3.4993,
+      "stdev": 0.501,
+      "min": 2,
+      "max": 4
+    },
+    "first_label_length": {
+      "mean": 8.3706,
+      "stdev": 4.8949,
+      "min": 1,
+      "max": 44
+    },
+    "first_label_entropy": {
+      "mean": 2.5043,
+      "stdev": 0.6946,
+      "min": 0.0,
+      "max": 3.962
+    },
+    "client_port": {
+      "mean": 32903.1905,
+      "stdev": 18636.276,
+      "min": 1024,
+      "max": 65503
+    },
+    "answer_size": {
+      "mean": 0.0002,
+      "stdev": 0.0157,
+      "min": 0,
+      "max": 1
+    },
+    "hour_of_day": {
+      "mean": 13,
+      "stdev": 0.0,
+      "min": 13,
+      "max": 13
+    },
+    "day_of_week": {
+      "mean": 2,
+      "stdev": 0.0,
+      "min": 2,
+      "max": 2
+    }
+  },
+  "model_files": {
+    "rf": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_tunnel_rf.pkl",
+    "transformer": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_tunnel_transformer.keras",
+    "scaler": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_scaler.pkl",
+    "threshold": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_threshold.json",
+    "trafficformer": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_trafficformer.h5",
+    "tf_threshold": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_trafficformer_threshold.json",
+    "tf_norm": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/dns_trafficformer_norm.json",
+    "provenance": "/home/paifern/DNS-_raffic-_Anomaly_Detection/model_memory/training_provenance.json"
+  },
+  "path_a_trained": "2026-03-18T07:18:30Z",
+  "path_a_prev": "first time",
+  "path_b_trained": "2026-03-18T07:18:30Z",
+  "path_b_prev": "first time",
+  "training_history": [
+    {
+      "date": "2026-03-18T07:18:30Z",
+      "total_samples": "8152",
+      "attack_samples": "2264",
+      "attack_types": [
+        "unknown"
+      ],
+      "source_files": 1,
+      "new_files": 1,
+      "skipped_files": 0,
+      "retrain_mode": "initial",
+      "path_a": "true",
+      "path_b": "true"
+    }
+  ]
+}

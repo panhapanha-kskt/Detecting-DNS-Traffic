@@ -1,0 +1,18 @@
+{
+  "merged_at": "2026-03-18T07:12:32Z",
+  "total_records": 8152,
+  "source_files": [
+    {
+      "path": "/home/paifern/DNS-_raffic-_Anomaly_Detection/data/extracted_2026-03-18_1773817951.json",
+      "type": "json",
+      "records": 8152,
+      "checksum": "471eab2d1e23ffdf"
+    }
+  ],
+  "source_counts": {
+    "json_files": 1,
+    "csv_files": 1,
+    "pcap_converted": 0,
+    "log_converted": 1
+  }
+}
