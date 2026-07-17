@@ -1,12 +1,14 @@
 # Research-Aligned DNS Traffic Anomaly Detection Using Hybrid Machine Learning Fusion
 
-**Institution:** Ministry of Post and Telecommunications Institute of Digital Technology — School of Digital Engineering
+**Institution:** Ministry of Post and Telecommunications Institute of Digital Technology 
 
 **Host Institution:** Cambodia Academy of Digital Technology (CADT), Department of Telecommunications and Networking
 
 **Academic Year:** 2025–2026
 
 **Advisor:** Mr. Roeum Makara
+
+Members: Mao Sovanrathana, Vutthin Vattanak, Ken Chomnan, Tith Sopanha
 
 ---
 
