@@ -1,0 +1,33 @@
+{
+  "total_queries": 8152,
+  "total_attacks": 2379,
+  "attack_percentage": 29.18,
+  "attack_breakdown": {
+    "NXDOMAIN_FLOOD": 351,
+    "RANDOM_SUBDOMAIN": 2,
+    "AMPLIFICATION": 0,
+    "CACHE_POISONING": 0,
+    "HIGH_ENTROPY": 38,
+    "ENCODING": 1988
+  },
+  "attack_patterns_detected": {
+    "nxdomain_flood": 351,
+    "random_subdomains": 2,
+    "amplification": 0,
+    "cache_poisoning": 0,
+    "high_entropy": 38,
+    "encoding_patterns": 3201
+  },
+  "top_attackers": [
+    {
+      "ip": "192.168.197.135",
+      "total_attacks": 2379,
+      "breakdown": {
+        "ENCODING": 1988,
+        "NXDOMAIN_FLOOD": 351,
+        "HIGH_ENTROPY": 38,
+        "RANDOM_SUBDOMAIN": 2
+      }
+    }
+  ]
+}

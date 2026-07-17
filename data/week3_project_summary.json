@@ -1,0 +1,14 @@
+{
+  "project": "DNS Traffic Anomaly Detection",
+  "week": 3,
+  "total_queries": 8152,
+  "suspicious_queries": 2264,
+  "attack_patterns_detected": {
+    "nxdomain_flood": 351,
+    "random_subdomains": 2,
+    "amplification": 0,
+    "cache_poisoning": 0,
+    "high_entropy": 38,
+    "encoding_patterns": 3201
+  }
+}
